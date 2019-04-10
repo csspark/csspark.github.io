@@ -61,7 +61,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		12/20/2018 
+		4/10/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -157,7 +157,7 @@
 	<div class="blog-text-center">
 		
 			
-			<i class="fa fa-pencil-square-o">总计3个标签</i>
+			<i class="fa fa-pencil-square-o">总计8个标签</i>
 			
 		  	 		
 	</div>    	 		
@@ -166,7 +166,7 @@
             
 
                 <div class="tags">
-                    <a href="/tags/github/" style="font-size: 16px; color: #000">github</a> <a href="/tags/hexo/" style="font-size: 16px; color: #000">hexo</a> <a href="/tags/nodejs/" style="font-size: 16px; color: #000">nodejs</a>
+                    <a href="/tags/PHP/" style="font-size: 16px; color: #000">PHP</a> <a href="/tags/github/" style="font-size: 16px; color: #000">github</a> <a href="/tags/hexo/" style="font-size: 35px; color: #f00">hexo</a> <a href="/tags/kubernates-k8s-VirtualBox-minicube/" style="font-size: 16px; color: #000">kubernates,k8s,VirtualBox,minicube</a> <a href="/tags/linux-ssr-proxy/" style="font-size: 16px; color: #000">linux,ssr,proxy</a> <a href="/tags/mycat/" style="font-size: 16px; color: #000">mycat</a> <a href="/tags/mysql/" style="font-size: 16px; color: #000">mysql</a> <a href="/tags/nodejs/" style="font-size: 16px; color: #000">nodejs</a>
                 </div>
 
             
@@ -199,7 +199,7 @@
 	<div class="blog-text-center">
 		<div class="theme-annie-copyright">
 			
-				&copy; 2018, content by Spark. All Rights Reserved. 			   
+				&copy; 2018 - 2019, content by Spark. All Rights Reserved.			       	
 			
 		</div>
 	</div>
@@ -271,7 +271,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "public/search.xml";
+    var search_path = "search.json";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
@@ -296,7 +296,7 @@
     }
 
     // get search zip version
-    $.get('/?t=' + (+new Date()), function(res) {
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
       if (localStorage.getItem('searchVersion') !== res) {
         localStorage.setItem('searchVersion', res);
         initSearchJson();
@@ -304,10 +304,10 @@
     });
 
     function initSearchJson () {
-      initLoad(['/'], {
+      initLoad(['/search.zip'], {
         loadOptions: {
           success: function(obj) {
-            localStorage.setItem('searchJson', obj['public/search.xml'])
+            localStorage.setItem('searchJson', obj['search.json'])
           },
           error: function(e) {
             return console.log(e)

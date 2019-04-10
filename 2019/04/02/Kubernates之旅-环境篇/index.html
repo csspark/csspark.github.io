@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>categories</title>
+	<title>Kubernates之旅-环境篇</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,8 +54,8 @@
 		
 		
 			
-			<p class="page-name">分类</p>
-		
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Kubernates之旅-环境篇》</p>
+			
 		
 	
 	
@@ -148,33 +148,183 @@
 		<!--main-->
 		<main> 
 		<div class="page-container">
-		<!--content start-->
+		<!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
-    <div class="am-u-md-8 am-u-sm-12">
-        <article class="am-article blog-article-p">
+	<div class="am-u-md-8 am-u-sm-12">
 
-            <div class="page-header">
-	<div class="blog-text-center">
-		
-			
-			<i class="fa fa-pencil-square-o">总计3个分类</i>
-			
-		  	 		
-	</div>    	 		
-</div>  	 		
+		<article class="am-article blog-article-p">
 
-            
+			<div class="am-article-hd">
+				
 
-                <div class="category">
-                    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/db/">db</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/术/">术</a><span class="category-list-count">1</span></li></ul>
-                </div>
 
-            
-        </article>
-    </div>
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/04/02/Kubernates之旅-环境篇/" itemprop="url">		
+			Kubernates之旅-环境篇		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/04/02/Kubernates之旅-环境篇/" itemprop="url">
+	<time datetime="2019-04-02T08:35:28.000Z" itemprop="datePublished">
+  		2019-04-02
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#kubernates,k8s,VirtualBox,minicube" title="kubernates,k8s,VirtualBox,minicube" rel="1">kubernates,k8s,VirtualBox,minicube</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<blockquote>
+<p>平台</p>
+<ul>
+<li>centos 7.2</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>安装内核</p>
+</blockquote>
+<blockquote>
+<p>安装virtualBox</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -</span><br><span class="line"></span><br><span class="line">wget https://download.virtualbox.org/virtualbox/6.0.4/VirtualBox-6.0-6.0.4_128413_el7-1.x86_64.rpm</span><br><span class="line"></span><br><span class="line">rpm -ivh VirtualBox-6.0-6.0.4_128413_el7-1.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>安装kubectl</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl</span><br><span class="line"></span><br><span class="line">chmod +x ./kubectl</span><br><span class="line"></span><br><span class="line">mv ./kubectl /usr/local/bin/kubectl</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>安装minikube</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64 \</span><br><span class="line"> &amp;&amp; chmod +x minikube</span><br><span class="line">mv minikube /usr/local/bin</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>设置代理安装单节点集群<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#将本地SSR开启http代理，设置IP：0.0.0.0</span><br><span class="line">#参考：https://www.jianshu.com/p/48804c8bb250</span><br><span class="line"></span><br><span class="line">export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;</span><br><span class="line">export no_proxy=192.168.99.0/24</span><br><span class="line"></span><br><span class="line">minikube start --docker-env http_proxy=http://192.168.99.1:1087 --docker-env https_proxy=http://192.168.99.1:1087 --docker-env no_proxy=localhost,127.0.0.1,192.168.99.0/24 --log_dir=tmp </span><br><span class="line">#linux代理参考：https://samzong.me/2017/11/17/howto-use-ssr-on-linux-terminal/</span><br><span class="line">#mac安装参考https://github.com/Unknwon/wuwen.org/issues/20</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>新建pod</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/acinwinstack/k8s-concept-demo.git</span><br><span class="line"></span><br><span class="line">cd k8s-concept-demo</span><br><span class="line"></span><br><span class="line">kubectl apply -f pod.yml</span><br><span class="line">kubectl apply -f service.yml</span><br><span class="line"></span><br><span class="line">kubectl cluster-info</span><br><span class="line">kubectl get svc</span><br></pre></td></tr></table></figure>
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2019/04/02/hexo-常用命令/" title="hexo 常用命令">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2018/12/28/common-code/" title="">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
 </div>
 
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
 
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+
+	</div>
+</div>
 		</div>
 		</main>
 		
@@ -240,6 +390,11 @@
 	}
 </style>
 
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
 
 
 
@@ -583,6 +738,8 @@
 	<script type="text/javascript" src="/js/love.js"></script>
 
 
+
+	<script type="text/javascript" src="/js/toc.js"></script>
 
 
 <script type="text/javascript" src="/js/main.js"></script>
