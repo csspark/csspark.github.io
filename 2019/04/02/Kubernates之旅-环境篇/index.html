@@ -61,7 +61,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/10/2019 
+		11/28/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -221,7 +221,20 @@
 <blockquote>
 <p>新建pod</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/acinwinstack/k8s-concept-demo.git</span><br><span class="line"></span><br><span class="line">cd k8s-concept-demo</span><br><span class="line"></span><br><span class="line">kubectl apply -f pod.yml</span><br><span class="line">kubectl apply -f service.yml</span><br><span class="line"></span><br><span class="line">kubectl cluster-info</span><br><span class="line">kubectl get svc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/acinwinstack/k8s-concept-demo.git</span><br><span class="line"></span><br><span class="line">cd k8s-concept-demo</span><br><span class="line"></span><br><span class="line">kubectl apply -f pod.yml</span><br><span class="line">kubectl apply -f service.yml</span><br><span class="line"></span><br><span class="line">kubectl cluster-info</span><br><span class="line">kubectl get svc</span><br><span class="line"></span><br><span class="line">pod 设定用什么镜像构建容器，容器端口是什么，但还是不提供服务</span><br><span class="line">service 根据selector参数判断为哪个pod提供服务，对外提供什么端口，复制多少份提供服务，节点类型是什么？如果是NodePort就一般是3万以上的端口</span><br><span class="line">节点类型还有clusterIP【用于minion节点中容器与容器，pod与pod，或者container与pod之间通信】，loadbalancer【对外部loadbalance提供】</span><br><span class="line"></span><br><span class="line">外部访问就根据集群的ip+service暴露的端口访问</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>deployment pod svc区别</p>
+</blockquote>
+<blockquote>
+<p>yaml文档注释<br>CNI 做的事情就是管理container，pod，service，host之间的通信，转发等相关工作<br>怎么做呢，可以在一份部署的yaml文档中看到<br>看一份k8s的service 部署文档,因为向外暴露的是service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Service</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx-svc</span><br><span class="line">spec:</span><br><span class="line">  ports:</span><br><span class="line">  - port: 80</span><br><span class="line">    name: http</span><br><span class="line">    targetPort: 80</span><br><span class="line">    protocol: TCP</span><br><span class="line">  selector:</span><br><span class="line">    app: concept-terms</span><br><span class="line">  type: NodePort</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>参考pod 文档<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx</span><br><span class="line">  labels:</span><br><span class="line">    app: concept-terms</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: web</span><br><span class="line">    image: nginx</span><br><span class="line">    ports:</span><br><span class="line">    - containerPort: 80</span><br></pre></td></tr></table></figure></p>
+<p>service 中的port会根据selector去查找节点中的pod里labels项含有相同值的，然后在把port对应上target port，type有四种，nodeport会随机给一个30000以上的端口</p>
+<p>cluster ip</p>
+<pre><code>pod 与pod之间的通信
+</code></pre><p>对外提供服务<br>loadbalance<br>noddeport</p>
+<p><img src="https://spark-1300032833.cos.ap-guangzhou.myqcloud.com/blog/2019-11-21-v1zvma.png" alt="kubernets网络通信"></p>
+
 					
 				</div>
 			</div>
@@ -237,7 +250,7 @@
 	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2018/12/28/common-code/" title="">
+		<a class="pull-right" href="/2018/12/28/分布式ID实践/" title="">
 			下一篇 &raquo;
 		</a>
 		</li>

@@ -61,7 +61,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/10/2019 
+		11/28/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -182,6 +182,11 @@
 					
 					<span>						
 						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#zookeeper,docker" title="zookeeper,docker" rel="1">zookeeper,docker</a>&nbsp;
+													 											
+						
 					</span>
 				</p>
 			</div>
@@ -189,7 +194,85 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						
+						<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><h2 id="分布式系统的不可能三角"><a href="#分布式系统的不可能三角" class="headerlink" title="分布式系统的不可能三角"></a>分布式系统的不可能三角</h2><ul>
+<li>Consistance (一致性)</li>
+<li>Availability（可用）</li>
+<li>Partition Tolerance（分区容错）</li>
+</ul>
+<p>移动互联网中的节奏越来越快，数据的一致性很重要</p>
+<h2 id="分布式中的一致性问题解决方案"><a href="#分布式中的一致性问题解决方案" class="headerlink" title="分布式中的一致性问题解决方案"></a>分布式中的一致性问题解决方案</h2><ul>
+<li><p>强一致性</p>
+<ul>
+<li>数据库主从同步，主库等待从库返回写入成功信号才继续，这样CA无法满足</li>
+<li>Paxos</li>
+<li>Raft </li>
+<li>ZAB</li>
+</ul>
+</li>
+<li><p>弱一致性（最终一致性）</p>
+<ul>
+<li>DNS</li>
+<li>gossip协议（Cassandra）</li>
+</ul>
+</li>
+</ul>
+<h2 id="明确分布式系统CA存在问题与解决的思路"><a href="#明确分布式系统CA存在问题与解决的思路" class="headerlink" title="明确分布式系统CA存在问题与解决的思路"></a>明确分布式系统CA存在问题与解决的思路</h2><pre><code>1.数据不是单点，才叫分布式
+2.不是单点，那就首先需要解决多个节点之间的数据一致性
+3.多个节点时会出现一个名词：state machine replication （状态机复制）
+    也就是一台机器发生改变的数据状态会以类似日志的形式记录下来，然后复制到多个节点上完成多个节点之间的数据转移。看来互联网的实质就是数据的移动也有一定道理。
+4 显然问题转变为多个节点之间如何达成共识的问题（consensus）
+    就是这些日志数据如何能都被节点机器正确有序的接收。因为互联网传输以及节点环境等因素在这中间就存在很多问题需要商量和确定，所以需要达成共识（consensus）
+5 业界一般会把 state machine之间的consensus 等同与一致性。其实中间有一些差别，因为除了共识算法，还需要client的参与支持，比如主从同步中，可以用多数派的方法（共识算法）来解决一致性，但是最终完成一致性需要客户端能有序的执行指令才能做到。
+6 共识算法paxos应运而生
+    灵魂在于多数派的思想，只是有变种
+    * basic paxos【乌托邦民主共和国】
+        著名的两阶段提交，这个容易导致活锁，就是在第一阶段提案时遭遇别人提案后，重新提案，最终冤冤相报何时了...因为效率低，难实现所以就有了multi paxos
+
+    * multi paxos【总统法治三权分立？】
+        引入了leader的概念，就是提案者，唯一的，从此结束了群雄争霸的局面，有了leader就很好解决共识，因为提案都是一个发起，相当于减少了一个阶段的提交。那它如何保证可用性呢？此时涉及到选举的问题。当主节点出现问题之后，如何迅速有继任者。
+
+    * raft可以理解是multi paxos的极简版，这里有https://raft.github.io/
+        raft划分为三个问题：
+            * leader选举
+            * 日志复制
+            * 确保一致性
+        raft 划分为3种或两种角色
+            * leader/candidate
+            * follow
+    * ZAB协议类似raft，都是multi paxos，一些称呼不同，leader周期zab叫epoch，raft为term，心跳方向相反，raft从上至下，zab自下而上。
+</code></pre><h2 id="zookeeper的应用场景"><a href="#zookeeper的应用场景" class="headerlink" title="zookeeper的应用场景"></a>zookeeper的应用场景</h2><ul>
+<li><p>分布式应用配置管理</p>
+<p>发布与订阅即所谓的配置管理，顾名思义就是将数据发布到zk节点上，供订阅者动态获取数据，实现配置信息的集中式管理和动态更新。例如全局的配置信息，地址列表等就非常适合使用。</p>
+</li>
+<li><p>分布式通知/协调</p>
+<p>ZooKeeper中特有watcher注册与异步通知机制，能够很好的实现分布式环境下不同系统之间的通知与协调，实现对数据变更的实时处理，使用方法：通常是不同系统都对ZK上同一个znode进行watch，监听znode的变化（包括znode本身内容及子节点的），其中一个系统update了 znode，那么另一个系统能够收到通知，并作出相应处理。</p>
+</li>
+<li><p>分布式锁</p>
+<p>分布式锁，这个主要得益于ZooKeeper为我们保证了数据的强一致性，zk集群中任意节点（一个zk server）上的相同znode的数据是一定是相同的。<br>锁服务可以分为两类，一个是保持独占，另一个是控制时序</p>
+</li>
+<li><p>集群管理</p>
+<p>Hbase Master选举则是zookeeper经典的使用场景</p>
+</li>
+<li>分布式队列</li>
+</ul>
+<p>个人觉得主要是前两个应用</p>
+<h2 id="实践操作"><a href="#实践操作" class="headerlink" title="实践操作"></a>实践操作</h2><p>docker-compose.yml</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3.1&apos;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  zoo1:</span><br><span class="line">    image: zookeeper</span><br><span class="line">    restart: always</span><br><span class="line">    hostname: zoo1</span><br><span class="line">    ports:</span><br><span class="line">      - 2181:2181</span><br><span class="line">    environment:</span><br><span class="line">      ZOO_MY_ID: 1</span><br><span class="line">      ZOO_SERVERS: server.1=0.0.0.0:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888</span><br><span class="line"></span><br><span class="line">  zoo2:</span><br><span class="line">    image: zookeeper</span><br><span class="line">    restart: always</span><br><span class="line">    hostname: zoo2</span><br><span class="line">    ports:</span><br><span class="line">      - 2182:2181</span><br><span class="line">    environment:</span><br><span class="line">      ZOO_MY_ID: 2</span><br><span class="line">      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=0.0.0.0:2888:3888 server.3=zoo3:2888:3888</span><br><span class="line"></span><br><span class="line">  zoo3:</span><br><span class="line">    image: zookeeper</span><br><span class="line">    restart: always</span><br><span class="line">    hostname: zoo3</span><br><span class="line">    ports:</span><br><span class="line">      - 2183:2181</span><br><span class="line">    environment:</span><br><span class="line">      ZOO_MY_ID: 3</span><br><span class="line">      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=0.0.0.0:2888:3888</span><br></pre></td></tr></table></figure>
+<h2 id="安装zk客户端管理工具"><a href="#安装zk客户端管理工具" class="headerlink" title="安装zk客户端管理工具"></a>安装zk客户端管理工具</h2><p><a href="https://github.com/ireaderlab/zkdash.git" target="_blank" rel="noopener">zkdash</a></p>
+<h2 id="zk基本命令"><a href="#zk基本命令" class="headerlink" title="zk基本命令"></a>zk基本命令</h2><ol>
+<li>启动ZK服务: bin/zkServer.sh start</li>
+<li>查看ZK服务状态: bin/zkServer.sh status</li>
+<li>停止ZK服务: bin/zkServer.sh stop</li>
+<li>重启ZK服务: bin/zkServer.sh restart </li>
+<li>连接服务器: zkCli.sh -server 127.0.0.1:2181</li>
+<li>ls [path]</li>
+<li>create [path] [value]</li>
+<li>get/set [path] [value]</li>
+<li>quit<br>10.help</li>
+</ol>
+<h2 id="zk示例代码"><a href="#zk示例代码" class="headerlink" title="zk示例代码"></a>zk示例代码</h2><p><a href="https://github.com/php-zookeeper/php-zookeeper/blob/master/examples/Zookeeper_Example.php" target="_blank" rel="noopener">php demo</a></p>
+<p>watch功能可能需要非安全线程版本的php<br><a href="https://www.imooc.com/article/31703" target="_blank" rel="noopener">https://www.imooc.com/article/31703</a></p>
+
 					
 				</div>
 			</div>
@@ -289,6 +372,18 @@
 	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
 -->
 
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#前言"><span class="post-toc-text">前言</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分布式系统的不可能三角"><span class="post-toc-text">分布式系统的不可能三角</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分布式中的一致性问题解决方案"><span class="post-toc-text">分布式中的一致性问题解决方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#明确分布式系统CA存在问题与解决的思路"><span class="post-toc-text">明确分布式系统CA存在问题与解决的思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#zookeeper的应用场景"><span class="post-toc-text">zookeeper的应用场景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实践操作"><span class="post-toc-text">实践操作</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装zk客户端管理工具"><span class="post-toc-text">安装zk客户端管理工具</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#zk基本命令"><span class="post-toc-text">zk基本命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#zk示例代码"><span class="post-toc-text">zk示例代码</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
 	
 
 	</div>

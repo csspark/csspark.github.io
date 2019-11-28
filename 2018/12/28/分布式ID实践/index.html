@@ -61,7 +61,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/10/2019 
+		11/28/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -183,7 +183,17 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						
+						<h2 id="分布式ID特点"><a href="#分布式ID特点" class="headerlink" title="分布式ID特点"></a>分布式ID特点</h2><ul>
+<li>递增趋势</li>
+<li>唯一</li>
+<li><p>最好自带时间属性</p>
+<p>  分布式id唯一性好理解，但如果只有唯一性，那么有些需要用到排序的时候，就还需要新建一个时间字段的普通索引。效率会下降，那么如果id能自带时间属性，递增的趋势，同时又唯一呢？只要建立一个id字段的聚集索引就行。</p>
+<p>  方案很多，记录一下php端的snowflake算法</p>
+<p>  纯PHP无法实现SnowFlake算法，因为线程安全版本(需要tid)和非线程安全版本(需要pid)不能生成相同格式的id(本项目的tid是系统中唯一的所以不用担心多个进程中tid冲突)，不能生成相同格式就不方便查询，并且PHP作为脚本语言无法维护sequence，当脚本结束的时候sequence又要被初始化，所以在大并发情况纯PHP实现的版本SnowFlake算法根本没有什么作用。所以就诞生了这个项目，以下为线程安全版本和非线程安全版本差别。</p>
+<p>  <a href="https://github.com/Sxdd/php_snowflake" target="_blank" rel="noopener">github</a></p>
+</li>
+</ul>
+
 					
 				</div>
 			</div>
@@ -192,7 +202,7 @@
 		<ul class="am-pagination">
     
     	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2018/12/28/common-code/" title="">
+   		<a class="pull-left" href="/2019/04/02/Kubernates之旅-环境篇/" title="Kubernates之旅-环境篇">
       		&laquo; 上一篇
 		</a>
 		</li>
@@ -283,6 +293,18 @@
 	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
 -->
 
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分布式ID特点"><span class="post-toc-text">分布式ID特点</span></a></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
 	
 
 	</div>

@@ -61,7 +61,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/10/2019 
+		11/28/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -162,9 +162,9 @@
 
 				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
 					<span class="theme-annie-post-date">
-						<a href="/2018/12/20/mycat旧项目改造1/" itemprop="url">
-	<time datetime="2018-12-20T06:23:20.000Z" itemprop="datePublished">
-  		2018-12-20
+						<a href="/2019/10/18/ECMAscript6学习/" itemprop="url">
+	<time datetime="2019-10-18T03:32:15.000Z" itemprop="datePublished">
+  		2019-10-18
   </time>
 </a>    
 
@@ -172,8 +172,8 @@
 					<span class="theme-annie-post-title">
 						
 	
-		<a href="/2018/12/20/mycat旧项目改造1/" itemprop="url">		
-			mycat旧项目改造		
+		<a href="/2019/10/18/ECMAscript6学习/" itemprop="url">		
+			ECMAscript6学习笔记		
 		</a>
 	
 
@@ -182,16 +182,47 @@
 					
 						<p>
 							
-								mycat对一个就项目数据库的改造背景一个项目的单表数据达到700W，考虑到日增长在2W左右，需要考虑分片，经过调研，为了系统解耦，决定采用引入中间件mycat的方案
-实践搭建实验环境mycat service: 10.10.10.245
-mysql: 10.10.10.10 &amp; 10.10.10.9123456789101112131415161718192021222324252627	
+								var,let,const声明变量的区别
+
+
+类型
+可重复声明
+作用域
+性质
+备注
+
+
+
+
+ var
+yes
+函数级
+变量
+
+
+
+ let
+no
+块级
+变量
+
+
+ const
+no
+块级
+常量
+
+
+
+(function(){})()之类的写法名称：自执行匿名函数
+目的：因为一般变量只要不是window下的全局变量或函数，最大的作用域也是函数级别，所以可以利用匿名函数创建一个命名空间。可以达到匿名和	
 							  
 						</p> 
 					
 
 					
 						<span class="continue-read">      	
-							<a href="/2018/12/20/mycat旧项目改造1/" class="pull-right">
+							<a href="/2019/10/18/ECMAscript6学习/" class="pull-right">
 								展开全文
 							</a>		
 						</span>
@@ -208,9 +239,9 @@ mysql: 10.10.10.10 &amp; 10.10.10.9123456789101112131415161718192021222324252627
 
 				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
 					<span class="theme-annie-post-date">
-						<a href="/2018/12/11/hexo/" itemprop="url">
-	<time datetime="2018-12-11T04:14:21.736Z" itemprop="datePublished">
-  		2018-12-11
+						<a href="/2019/09/17/实时音视频文档/" itemprop="url">
+	<time datetime="2019-09-17T02:22:52.000Z" itemprop="datePublished">
+  		2019-09-17
   </time>
 </a>    
 
@@ -218,8 +249,8 @@ mysql: 10.10.10.10 &amp; 10.10.10.9123456789101112131415161718192021222324252627
 					<span class="theme-annie-post-title">
 						
 	
-		<a href="/2018/12/11/hexo/" itemprop="url">		
-			Hexo		
+		<a href="/2019/09/17/实时音视频文档/" itemprop="url">		
+			实时音视频文档		
 		</a>
 	
 
@@ -228,15 +259,408 @@ mysql: 10.10.10.10 &amp; 10.10.10.9123456789101112131415161718192021222324252627
 					
 						<p>
 							
-								Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick	
+								接入流程1、引入js文件1&lt;script src=&quot;https://rtc.visitong.com/js/WebAPI.min.js&quot;&gt;&lt;/script&gt;
+2、检测是否支持 WebRTC123456789&lt;script&gt;WebAPI.fn.detectRTC(&#123;    screenshare: false&#125;, funct	
 							  
 						</p> 
 					
 
 					
 						<span class="continue-read">      	
-							<a href="/2018/12/11/hexo/" class="pull-right">
+							<a href="/2019/09/17/实时音视频文档/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/09/17/微信小程序实践之直播推流/" itemprop="url">
+	<time datetime="2019-09-17T02:22:52.000Z" itemprop="datePublished">
+  		2019-09-17
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/09/17/微信小程序实践之直播推流/" itemprop="url">		
+			微信小程序实践之直播推流		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								项目介绍利用小程序实现一个直播推流工具，记录一下当中的几个上手的知识点
+表单数据获取
+注意
+
+
+所有的input  textarea button全部包含在form表单元素里
+button  必须有formType=”submit” 这个属性
+form 必须有提交事件  即bindsubmit=”back_houtai”
+通过 name属性取值，name名称不可重复
+代码示例
+1234567891	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/09/17/微信小程序实践之直播推流/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/08/14/系统TPS，并发，响应时间，吞吐量评估/" itemprop="url">
+	<time datetime="2019-08-14T06:09:39.000Z" itemprop="datePublished">
+  		2019-08-14
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/08/14/系统TPS，并发，响应时间，吞吐量评估/" itemprop="url">		
+			系统TPS，并发，响应时间，吞吐量评估		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								关系系统吞吐量（Throughput）几个重要参数：QPS（TPS）、并发数、响应时间（RT）
+
+QPS（TPS）：每秒钟request/事务 数量
+并发数： 系统同时处理的request/事务数
+响应时间：  一般取平均响应时间
+
+并发并不等于QPS(TPS)，因为一个query(请求)或者Trransaction（事务）并非占据全部的CPU，IO等资源，对于一个多用户的系统，如果只有一个用户使	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/08/14/系统TPS，并发，响应时间，吞吐量评估/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/08/08/mysql造数据脚本/" itemprop="url">
+	<time datetime="2019-08-08T01:19:41.000Z" itemprop="datePublished">
+  		2019-08-08
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/08/08/mysql造数据脚本/" itemprop="url">		
+			mysql造数据脚本		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								
+mysql造数据脚本
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495969798	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/08/08/mysql造数据脚本/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/08/03/监控预警系统方案调研/" itemprop="url">
+	<time datetime="2019-08-03T07:41:13.000Z" itemprop="datePublished">
+  		2019-08-03
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/08/03/监控预警系统方案调研/" itemprop="url">		
+			监控预警系统方案调研		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								telegraf 收集数据influxDB 存储数据grafana 展示数据
+这和ELK的优缺点待查
+在展示上kibana还是不如grafana
+
+安装1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950安装grafanaGrafana是一个纯html/js的web应用	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/08/03/监控预警系统方案调研/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/07/30/ios推流端修改打包上线/" itemprop="url">
+	<time datetime="2019-07-30T01:38:40.000Z" itemprop="datePublished">
+  		2019-07-30
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/07/30/ios推流端修改打包上线/" itemprop="url">		
+			ios推流端修改打包上线		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								概述本笔记记录将七牛的ios推流端修改定制打包上线的过程，因为平常不常用ios开发工具，特此记录。
+
+环境
+
+
+xcode 9.3
+macOS 10.14
+code:https://github.com/pili-engineering/PLMediaStreamingKit.git
+
+
+过程
+
+gem安装
+
+
+gem是object-c和swift的依赖包管理工具，等同与python的pip，ph	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/07/30/ios推流端修改打包上线/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/07/02/开源ELK统一日志平台实践/" itemprop="url">
+	<time datetime="2019-07-02T01:21:00.000Z" itemprop="datePublished">
+  		2019-07-02
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/07/02/开源ELK统一日志平台实践/" itemprop="url">		
+			开源ELK统一日志平台实践		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								ELK开源统一日志系统实践编译安装环境10.10.10.245 filebeat+nginx
+10.10.10.15 elasticsearch
+10.10.10.10 logstash12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/07/02/开源ELK统一日志平台实践/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/06/05/面试题/" itemprop="url">
+	<time datetime="2019-06-05T02:16:05.000Z" itemprop="datePublished">
+  		2019-06-05
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/06/05/面试题/" itemprop="url">		
+			面试题		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								运维环境：24核2.0Ghz，32G，1T，nginx+php-fpm+mysql单台部署表现是页面出现排队现象，有时能进有时不能进。cpu load average: 5.84, 5.96, 5.06请问排查思路和解决办法？排队现象极有可能是有些进程缓慢导致堵塞，文件句柄到达极限引起，CPU资源，内存资源紧张。
+linux内核+tcp连接优化php-fpm结合日志优化mysql慢日志查询ngin	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/06/05/面试题/" class="pull-right">
+								展开全文
+							</a>		
+						</span>
+					         		
+				</div>
+		
+			</article>
+		
+			<article class="am-g blog-entry-article">
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+					<img src="/img/cart_cover.jpg" class="am-u-sm-12">
+				</div>	
+
+				<div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+					<span class="theme-annie-post-date">
+						<a href="/2019/06/04/wireguard实践/" itemprop="url">
+	<time datetime="2019-06-04T06:19:30.000Z" itemprop="datePublished">
+  		2019-06-04
+  </time>
+</a>    
+
+					</span>
+					<span class="theme-annie-post-title">
+						
+	
+		<a href="/2019/06/04/wireguard实践/" itemprop="url">		
+			wireguard实践		
+		</a>
+	
+
+					</span>
+					
+					
+						<p>
+							
+								1234//https://github.com/l-n-s/wireguard-install.gitwget https://raw.githubusercontent.com/l-n-s/wireguard-install/master/wireguard-install.sh -O wireguard-install.shbash wireguard-install.sh	
+							  
+						</p> 
+					
+
+					
+						<span class="continue-read">      	
+							<a href="/2019/06/04/wireguard实践/" class="pull-right">
 								展开全文
 							</a>		
 						</span>
@@ -254,6 +678,10 @@ Quick
 			</li>
 		
 		
+		
+			<li class="am-pagination-next">
+				<a href="/page/3/"> 下一页 &raquo; </a>
+			</li>
 		
 	</ul>
     	

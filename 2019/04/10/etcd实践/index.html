@@ -61,7 +61,7 @@
 	
 	<!-- others: such as change-bg, time... -->
 	<p class="page-name-other">
-		4/10/2019 
+		11/28/2019 
 		<style type="text/css">
 	header:after {
 		content: '';
@@ -182,6 +182,11 @@
 					
 					<span>						
 						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#etcd" title="etcd" rel="1">etcd</a>&nbsp;
+													 											
+						
 					</span>
 				</p>
 			</div>
@@ -189,7 +194,21 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						
+						<p>cat &lt;&lt; EOF | tee server-csr.json<br>{<br>    “CN”: “etcd”,<br>    “hosts”: [<br>    “10.186.32.12”,<br>    “10.186.26.40”,<br>    “10.104.247.233”<br>    ],<br>    “key”: {<br>        “algo”: “rsa”,<br>        “size”: 2048<br>    },<br>    “names”: [<br>        {<br>            “C”: “CN”,<br>            “L”: “CS”,<br>            “ST”: “CS”<br>        }<br>    ]<br>}<br>EOF</p>
+<p>cd /usr/local/src<br>tar zxvf etcd-v3.2.28-linux-amd64.tar.gz<br>cd etcd-v3.2.28-linux-amd64<br>cp etcd etcdctl /opt/etcd/bin/</p>
+<p>cat &lt;&lt; EOF | tee /opt/etcd/cfg/etcd.conf</p>
+<p>#[Member]<br>ETCD_NAME=”etcd01”<br>ETCD_DATA_DIR=”/var/lib/etcd/default.etcd”<br>ETCD_LISTEN_PEER_URLS=”<a href="https://10.186.26.40:2380&quot;" target="_blank" rel="noopener">https://10.186.26.40:2380&quot;</a><br>ETCD_LISTEN_CLIENT_URLS=”<a href="https://10.186.26.40:2379,http://127.0.0.1:2379&quot;" target="_blank" rel="noopener">https://10.186.26.40:2379,http://127.0.0.1:2379&quot;</a></p>
+<p>#[Clustering]<br>ETCD_INITIAL_ADVERTISE_PEER_URLS=”<a href="https://10.186.26.40:2380&quot;" target="_blank" rel="noopener">https://10.186.26.40:2380&quot;</a><br>ETCD_ADVERTISE_CLIENT_URLS=”<a href="https://10.186.26.40:2379&quot;" target="_blank" rel="noopener">https://10.186.26.40:2379&quot;</a><br>ETCD_INITIAL_CLUSTER=”etcd01=<a href="https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;" target="_blank" rel="noopener">https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;</a><br>ETCD_INITIAL_CLUSTER_TOKEN=”etcd-cluster”<br>ETCD_INITIAL_CLUSTER_STATE=”new”</p>
+<p>#[Security]<br>ETCD_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_CLIENT_CERT_AUTH=”true”<br>ETCD_PEER_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_PEER_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_PEER_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_PEER_CLIENT_CERT_AUTH=”true”<br>EOF</p>
+<p>cat &lt;&lt; EOF | tee /opt/etcd/cfg/etcd.conf</p>
+<p>#[Member]<br>ETCD_NAME=”etcd02”<br>ETCD_DATA_DIR=”/var/lib/etcd/default.etcd”<br>ETCD_LISTEN_PEER_URLS=”<a href="https://10.186.32.12:2380&quot;" target="_blank" rel="noopener">https://10.186.32.12:2380&quot;</a><br>ETCD_LISTEN_CLIENT_URLS=”<a href="https://10.186.32.12:2379,http://127.0.0.1:2379&quot;" target="_blank" rel="noopener">https://10.186.32.12:2379,http://127.0.0.1:2379&quot;</a></p>
+<p>#[Clustering]<br>ETCD_INITIAL_ADVERTISE_PEER_URLS=”<a href="https://10.186.32.12:2380&quot;" target="_blank" rel="noopener">https://10.186.32.12:2380&quot;</a><br>ETCD_ADVERTISE_CLIENT_URLS=”<a href="https://10.186.32.12:2379&quot;" target="_blank" rel="noopener">https://10.186.32.12:2379&quot;</a><br>ETCD_INITIAL_CLUSTER=”etcd01=<a href="https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;" target="_blank" rel="noopener">https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;</a><br>ETCD_INITIAL_CLUSTER_TOKEN=”etcd-cluster”<br>ETCD_INITIAL_CLUSTER_STATE=”new”</p>
+<p>#[Security]<br>ETCD_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_CLIENT_CERT_AUTH=”true”<br>ETCD_PEER_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_PEER_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_PEER_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_PEER_CLIENT_CERT_AUTH=”true”<br>EOF</p>
+<p>cat &lt;&lt; EOF | tee /opt/etcd/cfg/etcd.conf</p>
+<p>#[Member]<br>ETCD_NAME=”etcd03”<br>ETCD_DATA_DIR=”/var/lib/etcd/default.etcd”<br>ETCD_LISTEN_PEER_URLS=”<a href="https://10.104.247.233:2380&quot;" target="_blank" rel="noopener">https://10.104.247.233:2380&quot;</a><br>ETCD_LISTEN_CLIENT_URLS=”<a href="https://10.104.247.233:2379,http://127.0.0.1:2379&quot;" target="_blank" rel="noopener">https://10.104.247.233:2379,http://127.0.0.1:2379&quot;</a></p>
+<p>#[Clustering]<br>ETCD_INITIAL_ADVERTISE_PEER_URLS=”<a href="https://10.104.247.233:2380&quot;" target="_blank" rel="noopener">https://10.104.247.233:2380&quot;</a><br>ETCD_ADVERTISE_CLIENT_URLS=”<a href="https://10.104.247.233:2379&quot;" target="_blank" rel="noopener">https://10.104.247.233:2379&quot;</a><br>ETCD_INITIAL_CLUSTER=”etcd01=<a href="https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;" target="_blank" rel="noopener">https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;</a><br>ETCD_INITIAL_CLUSTER_TOKEN=”etcd-cluster”<br>ETCD_INITIAL_CLUSTER_STATE=”new”</p>
+<p>#[Security]<br>ETCD_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_CLIENT_CERT_AUTH=”true”<br>ETCD_PEER_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_PEER_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_PEER_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_PEER_CLIENT_CERT_AUTH=”true”<br>EOF</p>
+
 					
 				</div>
 			</div>
