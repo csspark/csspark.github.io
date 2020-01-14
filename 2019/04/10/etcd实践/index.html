@@ -1,200 +1,95 @@
-<!--
-	作者：Sariay
-	时间：2018-09-25
-	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
--->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="utf-8" />
+   
+  <meta name="keywords" content="IT，Life" />
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    etcd实践 |  Spark的博客
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
 
-	<!DOCTYPE html>
-	<html>
-		
+  
 
-<head><meta name="generator" content="Hexo 3.8.0">
-	<title>etcd实践</title>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="apple-mobile-web-app-title" content="Amaze UI">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-    <meta name="author" content="Spark">
-    <meta name="keywords" content="IT，Life">
-    <meta name="description" content="一生挨踢，永远学习，坚守信仰，简单活着">
-   	<!-- css -->
-	<link rel="stylesheet" href="/css/style.css">
+  
 
-	<!-- favicon -->
-	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
-	
-	<!-- font-awesome -->
-	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-	<body>	
-		<!--Preloader-->
-<div id="preloader">
-	<div id="status">
-		<img alt="PRELOADER" src="/img/logo.png">
-	</div>
-</div>
-<!--Preloader end-->
 
-<!-- header -->
+</html>
 
-	<header id="header-bg-2">
+<body>
+  <div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-etcd实践" class="article article-type-post" itemscope="" itemprop="blogPost" data-scroll-reveal="">
 
-	
-		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
-	
-	
-	<!-- motto or description -->
-		
- 		<p class="motto"></p>
-	
-	
-	<!-- current page name or title -->
-	
-		
-		
-			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《etcd实践》</p>
-			
-		
-	
-	
-	<!-- others: such as change-bg, time... -->
-	<p class="page-name-other">
-		11/28/2019 
-		<style type="text/css">
-	header:after {
-		content: '';
-		position: relative;
-		top: 0;
-		left: 0;
-		height: 100%;
-		width: 100%;
-		background: #222222;
-		opacity: .5;
-		z-index: -1;
-	}
-	
-	.change-header-bg{
-		font-style: normal;
-	}
-	.change-header-bg i{
-		text-align: center;
-		cursor: pointer;
-		pointer-events: bounding-box;
-	}
-	@media(max-width:512px) {
-		.change-header-bg {
-			display: none;
-			visibility: hidden;
-		}
-	}
-	
-</style>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  etcd实践
+</h1>
+  
 
-<script type="text/javascript">
-	function changeHeaderBg(){
-		var random_bg = Math.floor(Math.random() * 109 + 1);
-		var bg = 'url(https://XXX-youname-XXX.github.io/Random-img/' + random_bg + '.jpg)';
-		$("#header-bg-2").css("background-image", bg);
-	}
-</script>
+    </header>
+    
 
-<span class="change-header-bg">
-	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
-</span>
-	</p>		
-</header>
+    
+    <div class="article-meta">
+      <a href="/2019/04/10/etcd实践/" class="article-date">
+  <time datetime="2019-04-10T07:31:30.000Z" itemprop="datePublished">2019-04-10</time>
+</a>
+      
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">450字</span>
+        </span>
+    </span>
 
-<!-- nav -->
-<div id="cd-nav">
-	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
-
-	<nav id="cd-main-nav">
-		<ul>
-			
-      		<li class="fa fa-/">
-           		<a href="/" title="主页">主页</a>	
-      		</li>
-    		
-      		<li class="fa fa-/archives">
-           		<a href="/archives" title="归档">归档</a>	
-      		</li>
-    		
-      		<li class="fa fa-/categories">
-           		<a href="/categories" title="分类">分类</a>	
-      		</li>
-    		
-      		<li class="fa fa-/tags">
-           		<a href="/tags" title="标签">标签</a>	
-      		</li>
-    		
-      		<li class="fa fa-/about">
-           		<a href="/about" title="关于">关于</a>	
-      		</li>
-    		
-      		<li class="fa fa-/gallery">
-           		<a href="/gallery" title="相册">相册</a>	
-      		</li>
-    		
-    		
-        	
-            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
-        	
-		</ul>
-	</nav>
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2分钟</span>
+        </span>
+    </span>
 </div>
 
-		<!--main-->
-		<main> 
-		<div class="page-container">
-		<!-- content srart -->
-<div class="am-g am-g-fixed blog-fixed blog-content">
-	<div class="am-u-md-8 am-u-sm-12">
+      
+    </div>
+    
 
-		<article class="am-article blog-article-p">
-
-			<div class="am-article-hd">
-				
+    
+    
 
 
-				<h1 class="am-article-title blog-text-center">
-					
-					
-	
-		<a href="/2019/04/10/etcd实践/" itemprop="url">		
-			etcd实践		
-		</a>
-	
 
-				</h1>
 
-				<p class="am-article-meta blog-text-center">
-					<span>
-						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/04/10/etcd实践/" itemprop="url">
-	<time datetime="2019-04-10T07:31:30.000Z" itemprop="datePublished">
-  		2019-04-10
-  </time>
-</a>    
-&nbsp;
-					</span>
-					
-					<span>						
-						
-							<i class="fa fa-tags"></i>
-							
-								<a href="#etcd" title="etcd" rel="1">etcd</a>&nbsp;
-													 											
-						
-					</span>
-				</p>
-			</div>
+    
 
-			<div class="am-article-bd">
-				<div class="content" id="post-content">
-					
-						<p>cat &lt;&lt; EOF | tee server-csr.json<br>{<br>    “CN”: “etcd”,<br>    “hosts”: [<br>    “10.186.32.12”,<br>    “10.186.26.40”,<br>    “10.104.247.233”<br>    ],<br>    “key”: {<br>        “algo”: “rsa”,<br>        “size”: 2048<br>    },<br>    “names”: [<br>        {<br>            “C”: “CN”,<br>            “L”: “CS”,<br>            “ST”: “CS”<br>        }<br>    ]<br>}<br>EOF</p>
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>cat &lt;&lt; EOF | tee server-csr.json<br>{<br>    “CN”: “etcd”,<br>    “hosts”: [<br>    “10.186.32.12”,<br>    “10.186.26.40”,<br>    “10.104.247.233”<br>    ],<br>    “key”: {<br>        “algo”: “rsa”,<br>        “size”: 2048<br>    },<br>    “names”: [<br>        {<br>            “C”: “CN”,<br>            “L”: “CS”,<br>            “ST”: “CS”<br>        }<br>    ]<br>}<br>EOF</p>
 <p>cd /usr/local/src<br>tar zxvf etcd-v3.2.28-linux-amd64.tar.gz<br>cd etcd-v3.2.28-linux-amd64<br>cp etcd etcdctl /opt/etcd/bin/</p>
 <p>cat &lt;&lt; EOF | tee /opt/etcd/cfg/etcd.conf</p>
 <p>#[Member]<br>ETCD_NAME=”etcd01”<br>ETCD_DATA_DIR=”/var/lib/etcd/default.etcd”<br>ETCD_LISTEN_PEER_URLS=”<a href="https://10.186.26.40:2380&quot;" target="_blank" rel="noopener">https://10.186.26.40:2380&quot;</a><br>ETCD_LISTEN_CLIENT_URLS=”<a href="https://10.186.26.40:2379,http://127.0.0.1:2379&quot;" target="_blank" rel="noopener">https://10.186.26.40:2379,http://127.0.0.1:2379&quot;</a></p>
@@ -209,569 +104,278 @@
 <p>#[Clustering]<br>ETCD_INITIAL_ADVERTISE_PEER_URLS=”<a href="https://10.104.247.233:2380&quot;" target="_blank" rel="noopener">https://10.104.247.233:2380&quot;</a><br>ETCD_ADVERTISE_CLIENT_URLS=”<a href="https://10.104.247.233:2379&quot;" target="_blank" rel="noopener">https://10.104.247.233:2379&quot;</a><br>ETCD_INITIAL_CLUSTER=”etcd01=<a href="https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;" target="_blank" rel="noopener">https://10.186.26.40:2380,etcd02=https://10.186.32.12:2380,etcd03=https://10.104.247.233:2380&quot;</a><br>ETCD_INITIAL_CLUSTER_TOKEN=”etcd-cluster”<br>ETCD_INITIAL_CLUSTER_STATE=”new”</p>
 <p>#[Security]<br>ETCD_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_CLIENT_CERT_AUTH=”true”<br>ETCD_PEER_CERT_FILE=”/opt/etcd/ssl/server.pem”<br>ETCD_PEER_KEY_FILE=”/opt/etcd/ssl/server-key.pem”<br>ETCD_PEER_TRUSTED_CA_FILE=”/opt/etcd/ssl/ca.pem”<br>ETCD_PEER_CLIENT_CERT_AUTH=”true”<br>EOF</p>
 
-					
-				</div>
-			</div>
-		</article>
-
-		<ul class="am-pagination">
-    
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2019/04/10/zookeeper实践/" title="zookeeper实践">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
-	
-		<li class="am-pagination-next">
-		<a class="pull-right" href="/2019/04/10/K8S的日志分析与监控ingress/" title="K8S的日志分析与监控ingress">
-			下一篇 &raquo;
-		</a>
-		</li>
-	 
- </ul>
-        
-
-		<div class="theme-annie-comment-button-container">
-	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
-		加载评论
-		<!--加载评论-->
-	</button>
-</div>
-
-<div id="annie-comment-container" class="theme-annie-comment-main-container">
-
-	
-		
-			<!-- comment valine -->
-			<!-- show valine comment -->
-<div id="valineComment" class="comment"></div>
-
-<!-- valine`s js & css -->
-<script>
-	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
-</script>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="/js/valine.min.js"></script>
-<link rel="stylesheet" href="/css/comment.css">
-
-<script>
-	var checkExistComment = setInterval(function() {
-		if( $('#valineComment').length ) {
-			new Valine({
-				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
-				av: AV,
-				//使用id寻找div元素（使用class可能找不到）
-				el: '#valineComment',
-				emoticon_url: 'https://cloud.panjunwen.com/alu',
-				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
-				app_id: "3333....", //获取APP ID
-				app_key: "3333......", //获取APP KEY
-				placeholder: "no any!", //评论框占位提示文字        			
-			});
-			clearInterval(checkExistComment);
-		}
-	}, 100);
-</script>
-		
-	
-
-</div>
-
-<script type="text/javascript">
-	/* Show Comment */
-	var Annie_Comment = function() {
-		function Show_Hidden(obj) {
-			obj.style.display = 'block';
-		}
-		
-		//var obutton = $('#annie-comment-button');
-		//var obutton = $('#annie-comment-container');
-		var obutton = document.getElementById("annie-comment-button" || "0");
-		var odiv = document.getElementById("annie-comment-container");
-		if( 'obutton' ) {
-			obutton.onclick = function() {
-				Show_Hidden(odiv);
-				$("#annie-comment-button").css("display", 'none');
-				return false;
-			}
-		}
-	};
-
-	(function Annie_Init() {
-		Annie_Comment();
-	})();
-</script>
-		
-		<!--
-	时间：2018-09-24
-	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
--->
-
-	
-
-	</div>
-</div>
-		</div>
-		</main>
-		
-		<!--footer-->
-		<footer>
-	<div class="blog-text-center">
-		<div class="theme-annie-social">
-				
-				
-					<a href="http://github.com/csspark" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
-					
-				
-				
-					<a href="/178806504@qq.com" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
-					
-					
-						
-				
-		</div>
-	</div>
-
-	<div class="blog-text-center">
-		<div class="theme-annie-copyright">
-			
-				&copy; 2018 - 2019, content by Spark. All Rights Reserved.			       	
-			
-		</div>
-	</div>
-
-	<div class="blog-text-center">
-		<div class="theme-annie-copyright">
-			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
-		</div>
-	</div>
-</footer>
-		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
-
-<script>
-	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
-</script>
-
-<style>
-	.motto {
-		color: #000000;
-		font-size: 20px;
-		margin: 100px 25% 0;
-		width: 50%;
-		line-height: 1.4;
-		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
-		text-align: center;
-	}
-	@media(max-width: 890px) {
-		.motto {	
-			margin: 100px 10% 0;
-			width: 80%;
-		}
-	}
-	@media(max-width: 890px) {
-		.motto {
-			margin: 100px 5% 0;
-			width: 90%;
-		}
-	}
-</style>
-
-
-	<script src="/js/motto.js"></script>
-	<script type="text/javascript">
-		$(".motto").html(getMingYanContent());
-	</script>	
-
-
-
-	<div class="popup search-popup local-search-popup">
-    <span class="popup-btn-close">
-      ESC
-    </span>
-    <div class="container">
-      <div class="col-md-8 col-md-offset-2">
-
-        <div class="local-search-header clearfix">
-            <span class="search-icon"></span>
-            <div class="local-search-input-wrapper">
-              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
-            </div>
-        </div>
-
-        <div id="local-search-result"></div>
-
+      
+      <!-- 打赏 -->
+      
+      <div id="reward-btn">
+        打赏
       </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://csspark.github.io/2019/04/10/etcd实践/" data-id="ck5d8fq2y0005gdgfh9wz2xqf" class="article-share-link">分享</a>
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/etcd/">etcd</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2019/04/10/zookeeper实践/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            zookeeper实践
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/04/10/K8S的日志分析与监控ingress/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">K8S的日志分析与监控ingress</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
     </div>
 </div>
-
-<script src="/js/ziploader.js"></script>
-
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.json";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').fadeOut(300);
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $('.popup').fadeIn(300);
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // get search zip version
-    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
-      if (localStorage.getItem('searchVersion') !== res) {
-        localStorage.setItem('searchVersion', res);
-        initSearchJson();
-      }
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        notify: false,
+        verify: false,
+        app_id: '',
+        app_key: '',
+        path: window.location.pathname,
+        avatar: 'mp',
+        placeholder: '给我的文章加点评论吧~',
+        recordIP: true
     });
-
-    function initSearchJson () {
-      initLoad(['/search.zip'], {
-        loadOptions: {
-          success: function(obj) {
-            localStorage.setItem('searchJson', obj['search.json'])
-          },
-          error: function(e) {
-            return console.log(e)
-          }
-        },
-        returnOptions: {
-          'json': TYPE_TEXT
-        },
-        mimeOptions:{
-          'json':'application/json'
-        }
-      })
-    }
-
-    // search function;
-    var searchFunc = function(search_id, content_id) {
-      'use strict';
-
-      isfetched = true;
-      var datas = JSON.parse(localStorage.getItem('searchJson'));
-      console.log(search_id)
-      var input = document.getElementById(search_id);
-      var resultContent = document.getElementById(content_id);
-      var inputEventFunction = function() {
-        var searchText = input.value.trim().toLowerCase();
-        var keywords = searchText.split(/[\s\-]+/);
-        if (keywords.length > 1) {
-          keywords.push(searchText);
-        }
-        var resultItems = [];
-        if (searchText.length > 0) {
-          // perform local searching
-          datas.forEach(function(data) {
-            var isMatch = false;
-            var hitCount = 0;
-            var searchTextCount = 0;
-            var title = data.title ? data.title.trim() : '';
-            var titleInLowerCase = title.toLowerCase();
-            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
-            var contentInLowerCase = content.toLowerCase();
-            var articleUrl = decodeURIComponent(data.url);
-            var indexOfTitle = [];
-            var indexOfContent = [];
-            // only match articles with not empty titles
-            keywords.forEach(function(keyword) {
-              function getIndexByWord(word, text, caseSensitive) {
-                var wordLen = word.length;
-                if (wordLen === 0) {
-                  return [];
-                }
-                var startPosition = 0, position = [], index = [];
-                if (!caseSensitive) {
-                  text = text.toLowerCase();
-                  word = word.toLowerCase();
-                }
-                while ((position = text.indexOf(word, startPosition)) > -1) {
-                  index.push({position: position, word: word});
-                  startPosition = position + wordLen;
-                }
-                return index;
-              }
-
-              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-            });
-            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-              isMatch = true;
-              hitCount = indexOfTitle.length + indexOfContent.length;
-            }
-
-            // show search results
-
-            if (isMatch) {
-              // sort index by position of keyword
-
-              [indexOfTitle, indexOfContent].forEach(function (index) {
-                index.sort(function (itemLeft, itemRight) {
-                  if (itemRight.position !== itemLeft.position) {
-                    return itemRight.position - itemLeft.position;
-                  } else {
-                    return itemLeft.word.length - itemRight.word.length;
-                  }
-                });
-              });
-
-              // merge hits into slices
-
-              function mergeIntoSlice(text, start, end, index) {
-                var item = index[index.length - 1];
-                var position = item.position;
-                var word = item.word;
-                var hits = [];
-                var searchTextCountInSlice = 0;
-                while (position + word.length <= end && index.length != 0) {
-                  if (word === searchText) {
-                    searchTextCountInSlice++;
-                  }
-                  hits.push({position: position, length: word.length});
-                  var wordEnd = position + word.length;
-
-                  // move to next position of hit
-
-                  index.pop();
-                  while (index.length != 0) {
-                    item = index[index.length - 1];
-                    position = item.position;
-                    word = item.word;
-                    if (wordEnd > position) {
-                      index.pop();
-                    } else {
-                      break;
-                    }
-                  }
-                }
-                searchTextCount += searchTextCountInSlice;
-                return {
-                  hits: hits,
-                  start: start,
-                  end: end,
-                  searchTextCount: searchTextCountInSlice
-                };
-              }
-
-              var slicesOfTitle = [];
-              if (indexOfTitle.length != 0) {
-                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-              }
-
-              var slicesOfContent = [];
-              while (indexOfContent.length != 0) {
-                var item = indexOfContent[indexOfContent.length - 1];
-                var position = item.position;
-                var word = item.word;
-                // cut out 100 characters
-                var start = position - 20;
-                var end = position + 80;
-                if(start < 0){
-                  start = 0;
-                }
-                if (end < position + word.length) {
-                  end = position + word.length;
-                }
-                if(end > content.length){
-                  end = content.length;
-                }
-                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-              }
-
-              // sort slices in content by search text's count and hits' count
-
-              slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                  return sliceRight.hits.length - sliceLeft.hits.length;
-                } else {
-                  return sliceLeft.start - sliceRight.start;
-                }
-              });
-
-              // select top N slices in content
-
-              var upperBound = parseInt('5');
-              if (upperBound >= 0) {
-                slicesOfContent = slicesOfContent.slice(0, upperBound);
-              }
-
-              // highlight title and content
-
-              function highlightKeyword(text, slice) {
-                var result = '';
-                var prevEnd = slice.start;
-                slice.hits.forEach(function (hit) {
-                  result += text.substring(prevEnd, hit.position);
-                  var end = hit.position + hit.length;
-                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                  prevEnd = end;
-                });
-                result += text.substring(prevEnd, slice.end);
-                return result;
-              }
-
-              var resultItem = '';
-
-              if (slicesOfTitle.length != 0) {
-                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-              } else {
-                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-              }
-
-              slicesOfContent.forEach(function (slice) {
-                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
-              });
-
-              resultItem += "</li>";
-              resultItems.push({
-                item: resultItem,
-                searchTextCount: searchTextCount,
-                hitCount: hitCount,
-                id: resultItems.length
-              });
-            }
-          })
-        };
-        if (keywords.length === 1 && keywords[0] === "") {
-          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-        } else if (resultItems.length === 0) {
-          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
-        } else {
-          resultItems.sort(function (resultLeft, resultRight) {
-            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-              return resultRight.searchTextCount - resultLeft.searchTextCount;
-            } else if (resultLeft.hitCount !== resultRight.hitCount) {
-              return resultRight.hitCount - resultLeft.hitCount;
-            } else {
-              return resultRight.id - resultLeft.id;
-            }
-          });
-          var searchResultList = '<ul class=\"search-result-list\">';
-          resultItems.forEach(function (result) {
-            searchResultList += result.item;
-          })
-          searchResultList += "</ul>";
-          resultContent.innerHTML = searchResultList;
-        }
-      }
-
-      if ('auto' === 'auto') {
-        input.addEventListener('input', inputEventFunction);
-      } else {
-        $('.search-icon').click(inputEventFunction);
-        input.addEventListener('keypress', function (event) {
-          if (event.keyCode === 13) {
-            inputEventFunction();
-          }
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
         });
-      }
-
-      // remove loading animation
-      $('body').css('overflow', '');
-
-      proceedsearch();
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
     }
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        $('.sb-close').click();
-        searchFunc('local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
 
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2015-2020
+        Spark
+      </li>
+      <li>
+        
+          Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <ul class="list-inline">
+  <li>PV:<span id="busuanzi_value_page_pv"></span></li>
+  <li>UV:<span id="busuanzi_value_site_uv"></span></li>
+</ul>
+        
+      </li>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914"></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+    <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    
+    <aside class="sidebar">
+      
+        <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="Spark的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/旅行/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+      </aside>
+      <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+      <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+  <script src="/js/tocbot.min.js"></script>
+  <script>
+    // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+    tocbot.init({
+      tocSelector: '.tocbot',
+      contentSelector: '.article-entry',
+      headingSelector: 'h1, h2, h3, h4, h5, h6',
+      hasInnerContainers: true,
+      scrollSmooth: true,
+      positionFixedSelector: '.tocbot',
+      positionFixedClass: 'is-position-fixed',
+      fixedSidebarOffset: 'auto',
+			onClick: (e) => {
+      	document.getElementById(e.target.innerText).scrollIntoView()
+      	return false;
+    	}
     });
   </script>
 
 
-
-
-
-	<script type="text/javascript" src="/js/love.js"></script>
-
-
-
-	<script type="text/javascript" src="/js/toc.js"></script>
-
-
-<script type="text/javascript" src="/js/main.js"></script>
-
-<script type="text/javascript">
-	//generate a random img that pre_name 'from 0 to 110'
-	var random_bg = Math.floor(Math.random() * 109 + 1);
-
-	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
-	var bg = 'url(https://XXX-youname-XXX.github.io/Random-img/' + random_bg + '.jpg)';
-
-	$("#header-bg-2").css("background-image", bg);
+<script>
+  var ayerConfig = {
+    mathjax: false
+  }
 </script>
-		
-		<!--back to top-->
-        <style type="text/css">
-	#totop {
-		background: white;
-		border-radius: 50%;
-		position: fixed;
-		right: 5.4%;
-		bottom: 80px;
-		cursor: pointer;
-	}
-	
-	#totop a {
-		color: #474747;
-		background-color: transparent;
-		padding: 10px;
-		text-decoration: none;
-	}
-	
-	@media(max-width:512px) {
-		#totop {
-			display: none;
-			visibility: hidden;
-		}
-	}
-</style>
+
+<script src="/js/ayer.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
 
 
-	<div id="totop">
-  		<a href="javascript:;" class="fa fa-arrow-up"></a>
-	</div>
 
-	</body>
-	</html>
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+  
+  
 
+  </div>
+</body>
+
+</html>
